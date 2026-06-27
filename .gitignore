@@ -1,0 +1,27 @@
+# --- Build output ---
+bin/
+obj/
+
+# --- Compiled objects ---
+*.o
+*.obj
+
+# --- Precompiled binaries (old root builds) ---
+main.exe
+test_atomic.exe
+main
+
+# --- Saved scan results ---
+portscan_*.txt
+
+# --- IDE / editor ---
+.vs/
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# --- OS junk ---
+Thumbs.db
+.DS_Store
