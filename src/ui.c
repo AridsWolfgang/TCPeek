@@ -187,7 +187,7 @@ void ui_draw_header(void) {
     int secs = (int)difftime(time(NULL), start_time);
     int mins = secs / 60; secs %= 60;
 
-    plat_printf(hdr_y0, 2, C_TITLE, "Port Scanner  |  %s", target_str);
+    plat_printf(hdr_y0, 2, C_TITLE, "TCPeek  |  %s", target_str);
     plat_printf(hdr_y0, con_cols - 16, C_DIMTEXT, "Time  %02d:%02d", mins, secs);
 
     char buf_done[64], buf_total[64];

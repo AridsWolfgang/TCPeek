@@ -1,6 +1,6 @@
-# PortScannerUI
+# TCPeek
 
-A high-performance, multithreaded TCP port scanner with a polished terminal user interface. Built with the Win32 Console API and Winsock2.
+A high-performance, cross-platform TCP port scanner with a polished terminal user interface.
 
 ## Features
 
@@ -27,35 +27,42 @@ A high-performance, multithreaded TCP port scanner with a polished terminal user
 
 ## Requirements
 
-- Windows Vista or later
-- A C11 compiler (MinGW GCC recommended)
-- Winsock2 (included with Windows)
+- Windows or Linux terminal
+- A C11 compiler (MinGW GCC / GCC / Clang)
+- Winsock2 (Windows) or pthreads (Linux)
 
 ## Building
 
-### MinGW GCC
+### Windows
+
+```pwsh
+gcc -std=c11 -O2 src/main.c src/scanner.c src/ui.c src/utils.c src/platform_win32.c -o bin/tcpeek.exe -lws2_32
+```
+
+### Linux
 
 ```bash
-# Release build
-gcc -std=c11 -O2 src/main.c src/scanner.c src/ui.c src/utils.c -o bin/portscanner.exe -lws2_32
+gcc -std=c11 -O2 src/main.c src/scanner.c src/ui.c src/utils.c src/platform_linux.c -o bin/tcpeek -lpthread
+```
 
-# Or use the Makefile
-make
+### Makefile
+
+```bash
+make        # auto-detects OS
 make run
 make debug
 make clean
 ```
 
-### MSVC (Visual Studio)
+### VS Code
 
-```bash
-cl /std:c11 /O2 src/main.c src/scanner.c src/ui.c src/utils.c /Fe:bin/portscanner.exe /link ws2_32.lib
-```
+Press `Ctrl+Shift+B` (uses `.vscode/tasks.json`).
 
 ## Usage
 
 ```
-.\bin\portscanner.exe
+.\bin\tcpeek.exe     # Windows
+./bin/tcpeek          # Linux
 ```
 
 The program will prompt for:
@@ -66,18 +73,22 @@ The program will prompt for:
 ## Project Structure
 
 ```
-PortScannerUI/
+TCPeek/
 ├── src/
-│   ├── config.h       Shared types, constants, and extern declarations
-│   ├── main.c         Program entry point and orchestration
-│   ├── scanner.c/h    Port scanning engine (Winsock, threading)
-│   ├── ui.c/h         Terminal UI (console API, drawing, input)
-│   └── utils.c/h      Utilities (formatting, service names)
-├── bin/               Compiled binaries
-├── .github/           Issue templates
-├── Makefile           Build system
+│   ├── config.h           Shared types, constants, extern declarations
+│   ├── main.c             Program entry point and orchestration
+│   ├── scanner.c/h        Port scanning engine (Winsock / POSIX)
+│   ├── ui.c/h             Terminal UI (platform-independent)
+│   ├── utils.c/h          Utilities (formatting, service names)
+│   ├── platform.h         Cross-platform abstraction interface
+│   ├── platform_win32.c   Windows implementation
+│   └── platform_linux.c   Linux implementation
+├── bin/                   Compiled binaries
+├── .vscode/               VS Code build task
+├── .github/               Issue templates
+├── Makefile               Build system
 ├── CHANGELOG.md
-├── LICENSE            MIT
+├── LICENSE                MIT
 └── README.md
 ```
 

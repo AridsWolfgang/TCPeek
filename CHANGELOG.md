@@ -3,6 +3,7 @@
 ## [2.0.0] — 2026-06-27
 
 ### Added
+- Renamed project to TCPeek
 - Professional module-based project structure (src/config.h, scanner, ui, utils)
 - Unicode box-drawing UI with double-line borders and section dividers
 - Service name lookup for 40+ well-known ports

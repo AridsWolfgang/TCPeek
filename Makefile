@@ -1,5 +1,5 @@
 # ============================================================================
-# Makefile — PortScannerUI
+# Makefile — TCPeek
 # ============================================================================
 # Auto-detects the OS and compiles the appropriate platform layer.
 #   make       — release build
@@ -26,7 +26,7 @@ endif
 
 SRCS     = $(SRCDIR)/main.c $(SRCDIR)/scanner.c $(SRCDIR)/ui.c $(SRCDIR)/utils.c $(PLATFORM_SRC)
 OBJS     = $(SRCS:$(SRCDIR)/%.c=$(OBJDIR)/%.o)
-TARGET   = $(BINDIR)/portscanner$(if $(filter Windows_NT,$(OS)),.exe,)
+TARGET   = $(BINDIR)/tcpeek$(if $(filter Windows_NT,$(OS)),.exe,)
 
 # ---- Release build ----------------------------------------------------------
 
